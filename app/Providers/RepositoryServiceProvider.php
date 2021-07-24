@@ -8,7 +8,9 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
         \App\Repositories\Institution\Contracts\ListInstitutionContract::class =>
-            \App\Repositories\Institution\Actions\ListInstitutionRepository::class
+            \App\Repositories\Institution\Actions\ListInstitutionRepository::class,
+        \App\Repositories\Agreement\Contracts\ListAgreementContract::class =>
+            \App\Repositories\Agreement\Actions\ListAgreementRepository::class,
     ];
 
     public function register()
