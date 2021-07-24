@@ -11,6 +11,8 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Institution\Actions\ListInstitutionRepository::class,
         \App\Repositories\Agreement\Contracts\ListAgreementContract::class =>
             \App\Repositories\Agreement\Actions\ListAgreementRepository::class,
+        \App\Repositories\Simulation\Contracts\MakeSimulationContract::class =>
+            \App\Repositories\Simulation\Actions\MakeSimulationRepository::class,
     ];
 
     public function register()
