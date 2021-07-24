@@ -1,0 +1,18 @@
+scripts:
+  artisan: kool exec app php artisan
+  composer: kool exec app composer
+  node-setup:
+  - kool run yarn install
+  - kool run yarn dev
+  phpunit: kool exec app php ./bin/phpunit
+  reset:
+  - kool run composer install
+  - kool run artisan migrate:fresh --seed
+  - kool run node-setup
+  setup:
+  - cp .env.example .env
+  - kool start
+  - kool run composer install
+  - kool run artisan key:generate
+  - kool run node-setup
+  yarn: kool docker kooldev/node:14 yarn
