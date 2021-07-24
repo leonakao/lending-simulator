@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InstitutionResource;
+use App\Repositories\Institution\Actions\ListInstitutionRepository;
 
 class InstitutionController extends Controller
 {
-    public function index()
+    public function index(ListInstitutionRepository $list)
     {
-        return [];
+        return InstitutionResource::collection($list());
     }
 }
