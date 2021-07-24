@@ -1,6 +1,6 @@
 scripts:
   artisan: kool exec app php artisan
-  composer: kool exec app composer
+  composer: kool exec app composer2
   node-setup:
   - kool run yarn install
   - kool run yarn dev
