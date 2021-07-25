@@ -26,7 +26,6 @@ class MakeSimulationRepository extends SimulationBaseRepository implements MakeS
             ->map(function ($fee) use ($lendingValue, $calculateInstallment) {
                 $fee->valor_parcela = $calculateInstallment(
                     $lendingValue,
-                    $fee->parcelas,
                     $fee->coeficiente
                 );
 

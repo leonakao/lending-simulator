@@ -6,7 +6,6 @@ interface CalculateInstallmentValueContract
 {
     public function __invoke(
         float $lendingValue,
-        int $installments,
         float $coefficient
     ): float;
 }

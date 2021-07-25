@@ -9,10 +9,10 @@ class CalculateInstallmentValueRepository extends SimulationBaseRepository imple
 {
     const PRECISION = 2;
 
-    public function __invoke(float $lendingValue, int $installments, float $coefficient): float
+    public function __invoke(float $lendingValue, float $coefficient): float
     {
         $totalValue = $lendingValue * $coefficient;
 
-        return round($totalValue / $installments, self::PRECISION);
+        return round($totalValue, self::PRECISION);
     }
 }
