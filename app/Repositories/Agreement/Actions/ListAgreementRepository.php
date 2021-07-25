@@ -13,6 +13,6 @@ class ListAgreementRepository extends AgreementBaseRepository implements ListAgr
     {
         return $this
             ->setFileName(self::FILE_NAME)
-            ->getFileContent();
+            ->list();
     }
 }

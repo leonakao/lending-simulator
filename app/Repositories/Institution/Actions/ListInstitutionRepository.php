@@ -13,6 +13,6 @@ class ListInstitutionRepository extends InstitutionBaseRepository implements Lis
     {
         return $this
             ->setFileName(self::FILE_NAME)
-            ->getFileContent();
+            ->list();
     }
 }
