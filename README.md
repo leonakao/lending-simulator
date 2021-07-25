@@ -1,62 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Lending Simulator
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+O Projeto consiste na consulta de instituições bancárias e tipos de convênios, a partir de uma carga de dados pré definida. Também é possível realizar a simulação de empréstimos para cada uma das instituições e convênios.
 
-## About Laravel
+Princípios/Técnicas/Conceitos utilizados:
+- Clean Code
+- SOLID
+- Design Patterns
+- Keep It Simple, Stupid (KISS)
+- Don't Repeat Yourself (DRY)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Tecnologias/Ferramentas utilizadas:
+- Laravel
+- Docker
+- Kool
+- mocky.io
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instruções 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O projeto foi desenvolvido com a utilização do Docker, junto ao Kool.
 
-## Learning Laravel
+O [Kool](https://kool.dev/) é uma ferramenta utlizada para simplificação do uso do Docker e padronização do ambiente de desenvolvimento frente a vários projetos e diferentes desenvolvedores. É recomendável a instalação do mesmo para execução do projeto, porém ela **não é obrigatória**. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Criação e Configurações Iniciais
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Clonando o Projeto
 
-## Laravel Sponsors
+1. `git clone git@github.com:leonakaodev/lending-simulator.git` - Clona o projeto para o seu computador
+2. `cd lending-simulator` - Acessa o diretório recém criado do projeto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Configurando o projeto
 
-### Premium Partners
+**Usando Kool:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+1. `kool run setup`
 
-## Contributing
+**Apenas Docker:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. `cp .env.example .env` - Copia as variáveis de ambiente.
+2. `docker-compose up --build -d` - Inicializa os containers em background
+3. `docker exec lending-simulator_app_1 composer2 install` - Instala as dependências via composer
+4. `docker exec lending-simulator_app_1 php artisan key:generate` - Gera uma nova chave do Laravel para a aplicação
 
-## Code of Conduct
+*Note:* "lending-simulator_app_1" é o nome do container que está rodando o app, em caso de erros, verifique se ele está correto.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Considerações Gerais:**
 
-## Security Vulnerabilities
+Em caso de problemas com permissões de acesso de diretório, execute: `chmod -R 777 storage`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Inicializações Futuras
 
-## License
+**Usando Kool:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. `kool start`
+
+**Apenas Docker:**
+
+1. `docker-compose up --build -d`
+
+## Aplicação e Considerações
+
+### Arquitetura
+
+O projeto atualmente consistema apenas na exibição de dados de pré carregados e o cálculo de uma simulação de empréstimo para cada instituição em formato de API, sendo assim um serviço que será acessado e consumido seguindo uma arquitetura monolítica.
+
+### Diretórios
+
+Aleḿ dos diretórios padrões seguridos pelo Laravel, foram criados mais 3 diretórios para organizar e separar as funcionalidades dentro do projeto:
+
+1. **Repositories** - Responsável por manter as implementações ligadas às regras de negócios e são consumidos via controllers
+2. **Services** - Implementações que podem ser consumidas em diferentes locais da aplicação, e visam forncer um suporte para o desenvolvimento das outras funcionalidades. Podendo ter integração com outras ferramentas ou não.
+3. **Utils** - Códigos mais simples que podem ser utilizados em toda a aplicação as realizar alguma ação específica.
