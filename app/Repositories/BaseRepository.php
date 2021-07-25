@@ -8,18 +8,19 @@ use Illuminate\Support\Collection;
 
 abstract class BaseRepository
 {
-    private $fileReader;
+    private $jsonFileReader;
     private $fileName;
     private $filters = [];
 
-    public function __construct(ReadJsonFile $fileReader)
+    public function __construct(ReadJsonFile $jsonFileReader)
     {
-        $this->fileReader = $fileReader;
+        $this->jsonFileReader = $jsonFileReader
+            ->setBasePath(database_path("dumps/"));
     }
 
     protected function getFileContent(): Collection
     {
-        return $this->fileReader->getFileContent($this->getFileName());
+        return $this->jsonFileReader->getFileContent($this->getFileName());
     }
 
     protected function getFileName(): string

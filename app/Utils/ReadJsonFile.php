@@ -6,9 +6,18 @@ use Illuminate\Support\Collection;
 
 class ReadJsonFile
 {
-    public function getFileContent($file): Collection
+    protected $basePath = '';
+
+    public function setBasePath(string $path): self
     {
-        $jsonString = file_get_contents(database_path("dumps/{$file}.json"));
+        $this->basePath = $path;
+
+        return $this;
+    }
+
+    public function getFileContent(string $file): Collection
+    {
+        $jsonString = file_get_contents($this->basePath . "/{$file}.json");
 
         return collect(json_decode($jsonString, false));
     }
