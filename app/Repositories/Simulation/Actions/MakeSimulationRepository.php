@@ -6,6 +6,7 @@ use App\Repositories\Fee\Contracts\ListFeeContract;
 use App\Repositories\Simulation\Contracts\CalculateInstallmentValueContract;
 use App\Repositories\Simulation\Contracts\MakeSimulationContract;
 use App\Repositories\Simulation\SimulationBaseRepository;
+
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
