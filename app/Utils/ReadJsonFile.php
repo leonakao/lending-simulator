@@ -10,6 +10,6 @@ class ReadJsonFile
     {
         $jsonString = file_get_contents(database_path("dumps/{$file}.json"));
 
-        return collect(json_decode($jsonString, true));
+        return collect(json_decode($jsonString, false));
     }
 }
