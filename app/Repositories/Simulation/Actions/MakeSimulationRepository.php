@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Simulation\Actions;
 
-use App\Repositories\Institution\Actions\ListInstitutionRepository;
+use App\Repositories\Agreement\Contracts\ListAgreementContract;
+use App\Repositories\Institution\Contracts\ListInstitutionContract;
 use App\Repositories\Simulation\Contracts\MakeSimulationContract;
 use App\Repositories\Simulation\SimulationBaseRepository;
 use Illuminate\Support\Arr;
@@ -12,10 +13,14 @@ class MakeSimulationRepository extends SimulationBaseRepository implements MakeS
 {
     public function __invoke(array $options): Collection
     {
-        $institutions = app(ListInstitutionRepository::class)(
+        $institutions = app(ListInstitutionContract::class)(
             Arr::get($options, 'instituicoes', [])
         );
 
-        return $institutions;
+        $agreements = app(ListAgreementContract::class)(
+            Arr::get($options, 'convenios', [])
+        );
+
+        return $agreements;
     }
 }
