@@ -19,7 +19,7 @@ class SimulationRequest extends FormRequest
     public function getData()
     {
         return [
-            'lending_value' => $this->input('valor_emprestimo'),
+            'lendingValue' => $this->input('valor_emprestimo'),
             'institutions' => $this->input('instituicoes'),
             'agreements' => $this->input('convenios'),
             'installments' => $this->input('parcela'),
