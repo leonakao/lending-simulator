@@ -29,11 +29,6 @@ class RequestClientService implements RequestClientServiceInterface
         return $this->baseUri;
     }
 
-    public function post(string $url, ?array $params = []): Response
-    {
-        return $this->getRequest()->post($url, $params);
-    }
-
     public function get(string $url, ?array $params = []): Response
     {
         return $this->getRequest()->get($url, $params);
