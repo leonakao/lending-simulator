@@ -114,4 +114,5 @@ return [
 
     'password_timeout' => 10800,
 
+    'authenticator_service' => env('AUTHENTICATOR_SERVICE', ''),
 ];
