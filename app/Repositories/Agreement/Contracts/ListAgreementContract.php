@@ -6,5 +6,5 @@ use Illuminate\Support\Collection;
 
 interface ListAgreementContract
 {
-    public function __invoke(?array $filters): Collection;
+    public function __invoke(): Collection;
 }

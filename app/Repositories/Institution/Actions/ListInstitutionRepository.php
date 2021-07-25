@@ -10,19 +10,10 @@ use Illuminate\Support\Collection;
 
 class ListInstitutionRepository extends InstitutionBaseRepository implements ListInstitutionContract
 {
-    public function __invoke(?array $filters = []): Collection
+    public function __invoke(): Collection
     {
-        $institutions = $this
+        return $this
             ->setFileName(self::FILE_NAME)
             ->getFileContent();
-
-        if (count($filters) > 0) {
-            $institutions = $institutions->filter(function ($institution) use ($filters) {
-                return in_array($institution->valor, $filters);
-            })
-                ->flatten();
-        }
-
-        return $institutions;
     }
 }
